@@ -13,6 +13,24 @@
   --font-mono: 'Share Tech Mono', monospace;
   --font-orb: 'Orbitron', sans-serif;
   --font-raj: 'Rajdhani', sans-serif;
+  --navbar-scrolled-bg: rgba(10, 26, 26, 0.95);
+  --shadow-card: 0 4px 24px rgba(0,245,212,0.08);
+}
+
+/* ===== LIGHT MODE ===== */
+[data-theme="light"] {
+  --teal: #007a6a;
+  --teal-dim: #009980;
+  --green: #1a8c00;
+  --bg: #f0faf8;
+  --bg-alt: #e4f5f2;
+  --card: #ffffff;
+  --border: rgba(0, 122, 106, 0.2);
+  --border-glow: rgba(0, 122, 106, 0.45);
+  --text: #0d2b26;
+  --text-dim: rgba(20, 70, 60, 0.65);
+  --navbar-scrolled-bg: rgba(240, 250, 248, 0.97);
+  --shadow-card: 0 4px 24px rgba(0,122,106,0.12);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -47,7 +65,7 @@ body {
   transition: all 0.3s ease;
 }
 #navbar.scrolled {
-  background: rgba(10, 26, 26, 0.95);
+  background: var(--navbar-scrolled-bg);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
   padding: 10px 0;
@@ -93,8 +111,39 @@ body {
 }
 .nav-link:hover { color: var(--teal); text-shadow: 0 0 10px var(--teal); }
 .nav-link:hover::after { transform: scaleX(1); }
+.nav-right { display: flex; align-items: center; gap: 12px; }
 .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
 .hamburger span { display: block; width: 24px; height: 2px; background: var(--teal); transition: all 0.3s; }
+
+/* ===== THEME TOGGLE BUTTON ===== */
+.theme-toggle {
+  background: transparent;
+  border: 1px solid var(--border-glow);
+  border-radius: 50px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.3s ease;
+  color: var(--teal);
+  line-height: 1;
+}
+.theme-toggle:hover {
+  background: var(--border);
+  box-shadow: 0 0 12px var(--border-glow);
+  transform: scale(1.05);
+}
+.theme-icon { display: none; }
+/* Dark mode: show moon icon */
+:root .theme-icon-dark,
+[data-theme="dark"] .theme-icon-dark { display: inline; }
+:root .theme-icon-light,
+[data-theme="dark"] .theme-icon-light { display: none; }
+/* Light mode: show sun icon */
+[data-theme="light"] .theme-icon-dark { display: none; }
+[data-theme="light"] .theme-icon-light { display: inline; }
 
 /* ===== HERO ===== */
 #hero {
